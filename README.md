@@ -1,8 +1,6 @@
 # mesa_gd
-Generalized Darwinism package for the mesa ABM platform
 
-
-
+Agent-Based Modelling package for Generalized Darwinism Models based on MESA
 
 ## Installation
 
