@@ -31,4 +31,4 @@ Then open your browser to [http://127.0.0.1:8521/](http://127.0.0.1:8521/) and p
 ## Further Reading
 
 This model is based on the theoretical framework proposed by professors Geoffrey Hodgson and Thorbjorn Knudsen in
-Darwin's Conjecture: The Search for General Principles of Social and Economic Evolution (2010)
+the book "Darwin's Conjecture: The Search for General Principles of Social and Economic Evolution (2010)"
