@@ -36,6 +36,6 @@ The below files need to be customized for the specific model. Currently they hav
 
 
 ## Further Reading
-Please refer to the full documentation at http://mesa_gd.reathedocs.io
+Please refer to the full documentation at http://mesa_gd.readthedocs.io
 This model is based on the theoretical framework proposed by professors Geoffrey Hodgson and Thorbjorn Knudsen in
 the book "Darwin's Conjecture: The Search for General Principles of Social and Economic Evolution (2010)"
