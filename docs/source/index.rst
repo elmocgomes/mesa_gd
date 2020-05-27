@@ -10,6 +10,8 @@ Welcome to mesa_gd's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   intro
+   interactors
 
 
 Indices and tables

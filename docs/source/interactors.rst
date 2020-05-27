@@ -24,13 +24,14 @@ The type of interactor used in the model can have its own attributes and methods
 For example, in the Hunter model, the Hunter is an interactor which also has methods to track its energy variances, age, last pos, etc.
 Here is the beggining of its code:
 
-..code-block:: python
-  class Hunter(Interactor):
-      def __init__(self, pos, model, hunter_energy, hunter_energy_consumption, age, replicators, replicators_dictionary):
-          super().__init__(pos, model, replicators, replicators_dictionary)
-          self.replicators=replicators
-          self.replicators_dictionary=replicators_dictionary
-          self.lastpos=pos
-          self.hunter_energy=hunter_energy
-          self.hunter_energy_consumption=hunter_energy_consumption
-          self.age = age
+.. code-block:: python
+
+    class Hunter(Interactor):
+        def __init__(self, pos, model, hunter_energy, hunter_energy_consumption, age, replicators, replicators_dictionary):
+            super().__init__(pos, model, replicators, replicators_dictionary)
+            self.replicators=replicators
+            self.replicators_dictionary=replicators_dictionary
+            self.lastpos=pos
+            self.hunter_energy=hunter_energy
+            self.hunter_energy_consumption=hunter_energy_consumption
+            self.age = age
