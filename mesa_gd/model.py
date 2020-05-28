@@ -24,36 +24,36 @@ def rv_moveany_directions(interactor):
         interactor.pos,
         moore = False,
         include_center=False)
-    logging.info("----------------------")
-    logging.info("moveany")
-    logging.info(possible_directions)
-    logging.info("Last Pos:")
-    logging.info(interactor.lastpos)
-    logging.info("Pos:")
-    logging.info(interactor.pos)
+    #logging.info("----------------------")
+    #logging.info("moveany")
+    #logging.info(possible_directions)
+    #logging.info("Last Pos:")
+    #logging.info(interactor.lastpos)
+    #logging.info("Pos:")
+    #logging.info(interactor.pos)
     new_position = interactor.random.choice(possible_directions)
     interactor.lastpos=interactor.pos # Updates last position visited as an information for the replicator
-    logging.info("New Pos:")
-    logging.info (new_position)
+    #logging.info("New Pos:")
+    #logging.info (new_position)
     interactor.model.grid.move_agent(interactor, new_position)
 
 def rv_movefwd_directions(interactor):
     possible_directions = interactor.model.grid.get_neighborhood(
         interactor.pos, moore= False,
         include_center=False) # If moore is True allows movement in 8 directions, if it is False allows it only in 4 directions
-    logging.info("----------------------")
-    logging.info("movefwd")
-    logging.info(possible_directions)
-    logging.info("Last Pos:")
-    logging.info(interactor.lastpos)
-    logging.info("Pos:")
-    logging.info(interactor.pos)
+    #logging.info("----------------------")
+    #logging.info("movefwd")
+    #logging.info(possible_directions)
+    #logging.info("Last Pos:")
+    #logging.info(interactor.lastpos)
+    #logging.info("Pos:")
+    #logging.info(interactor.pos)
     if interactor.lastpos!=interactor.pos:
         possible_directions.remove(interactor.lastpos) # Excludes last position as a possible direction for the next move
     new_position = interactor.random.choice(possible_directions)
     interactor.lastpos=interactor.pos # Updates last position visited as an information for the replicator
-    logging.info("New Pos:")
-    logging.info (new_position)
+    #logging.info("New Pos:")
+    #logging.info (new_position)
     interactor.model.grid.move_agent(interactor, new_position)
 
 
@@ -86,16 +86,16 @@ def replicator_frequency (model):
 
 class GD_Hunter(Model):
 
-    def __init__(self, height, width, initial_population):
-
+    def __init__(self, initial_population, hunter_energy_consumption, hunter_energy ):
+        self.description = "An example model built on mesa_gd. It uses the Generalized Darwinism framework to show how the hunting habit of searching for preys(turkeys here) only in new locations becomes dominant as it gives a slight advantage to hunters."
         # Height and Width of the environment grid
-        self.height = height
-        self.width = width
+        self.height = 50
+        self.width = 50
         self.initial_population = initial_population
         self.schedule = RandomActivationByBreed(self)
         self.grid = MultiGrid(self.height, self.width, torus=False)
-        self.hunter_max_energy_consumption = 10
-
+        self.hunter_energy_consumption = hunter_energy_consumption
+        self.hunter_energy = hunter_energy
         # Create initial resource distribution in the environment
         # Create turkeys distribution
         for _, x, y in self.grid.coord_iter(): # For each cell, ignore its contents, gets position
@@ -108,8 +108,6 @@ class GD_Hunter(Model):
         for i in range(self.initial_population):
             x = self.random.randrange(self.width)
             y = self.random.randrange(self.height)
-            hunter_energy = 10
-            hunter_energy_consumption = 5
             replicators_list = ['rv_moveany_directions', 'rv_movefwd_directions']
             replicators=[]
             replicators.append (self.random.choice(replicators_list)) # Instruction to the researcher: List here the replicator variations as function names
@@ -118,12 +116,12 @@ class GD_Hunter(Model):
                   "rv_moveany_directions": rv_moveany_directions,
                   "rv_movefwd_directions": rv_movefwd_directions
                 }
-            hunter = Hunter((x,y), self, hunter_energy, hunter_energy_consumption, age, replicators, replicators_dictionary) # Create the hunters self, pos, model, hunter_energy, hunter_energy_consumption, age
+            hunter = Hunter((x,y), self, self.hunter_energy, self.hunter_energy_consumption, age, replicators, replicators_dictionary) # Create the hunters self, pos, model, hunter_energy, hunter_energy_consumption, age
             self.grid.place_agent(hunter, (x, y)) # Place the hunters
             self.schedule.add(hunter) # Add the hunter to the schedule
 
         self.running = True
-        self.datacollector = DataCollector({"Number of Hunters": lambda m: m.schedule.get_breed_count(Hunter), "Frequency of Replicator": replicator_frequency})
+        self.datacollector = DataCollector({"Population": lambda m: m.schedule.get_breed_count(Hunter), "Frequency of Replicator": replicator_frequency})
         self.datacollector.collect(self)
 
     def step(self):

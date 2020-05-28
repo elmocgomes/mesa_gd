@@ -42,14 +42,15 @@ def Interactor_portrayal(agent):
     return portrayal
 
 canvas_element = CanvasGrid(Interactor_portrayal, 50, 50, 500, 500)
-InteractorChart_element = ChartModule([{"Label": "Frequency of Replicator", "Color": "#gg0000"}]) #{"Label": "Number of Hunters", "Color": "#AA0000"},
+FrequencyChart_element = ChartModule([{"Label": "Frequency of Replicator", "Color": "Black"}])
+InteractorChart_element = ChartModule([{"Label": "Population", "Color": "Gray"}])
 
 # "Variable": UserSettableParameter('checkbox', 'Caption', True),
 
-model_params = { "width": UserSettableParameter('slider', 'Grid width', 50, 10, 100),
-                 "height": UserSettableParameter('slider', 'Grid Height', 50, 10, 100),
+model_params = { "hunter_energy_consumption": UserSettableParameter('slider', 'Hunter Energy Consumption', 4, 1, 10),
+                 "hunter_energy": UserSettableParameter('slider', 'Initial Hunter Energy', 10, 1, 20),
                  "initial_population": UserSettableParameter('slider', 'Initial Interactors Population', 100, 10, 300)}
 
-server = ModularServer(GD_Hunter, [canvas_element, InteractorChart_element],
+server = ModularServer(GD_Hunter, [canvas_element, FrequencyChart_element, InteractorChart_element],
                        "GD Hunter Model", model_params)
 # server.launch()

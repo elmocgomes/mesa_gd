@@ -71,8 +71,8 @@ class Hunter(Interactor):
                     logging.info("Hunter Energy Capped")
 
                 if self.age == 60 or self.age==80: # Checks if the hunter is in reproduction age
-                    hunter_energy = 10
-                    hunter_energy_consumption = 4
+                    hunter_energy = self.model.hunter_energy
+                    hunter_energy_consumption = self.model.hunter_energy_consumption
                     replicators = self.replicators # Copy the replicators in the interactor triggering
                     age = 0
                     hunter = Hunter(self.pos, self.model, hunter_energy, hunter_energy_consumption, age, self.replicators, self.replicators_dictionary)
