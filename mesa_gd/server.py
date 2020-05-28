@@ -53,4 +53,6 @@ model_params = { "hunter_energy_consumption": UserSettableParameter('slider', 'H
 
 server = ModularServer(GD_Hunter, [canvas_element, FrequencyChart_element, InteractorChart_element],
                        "GD Hunter Model", model_params)
-# server.launch()
+
+server.port = int(os.environ.get("PORT", 5000))
+server.launch()
