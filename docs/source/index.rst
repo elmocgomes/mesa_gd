@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to mesa_gd's documentation!
-===================================
+
+Documentation for the MESA_GD package
+======================================
+Agent-Based Modelling package for Generalized Darwinism Models based on
+MESA
 
 .. toctree::
    :maxdepth: 2
