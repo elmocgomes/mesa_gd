@@ -15,7 +15,8 @@ MESA
 
    intro
    interactors
-
+   replicators
+   
 
 Indices and tables
 ==================
